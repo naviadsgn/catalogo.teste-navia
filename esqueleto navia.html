@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Lojinha</title>
+    <style>
+body {
+    font-family: "Pacifico", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5ceee;
+    color: #ffffff;
+    transition: background-color 1s;
+    background-image: url(' ');  
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;        
+    color: #80b1fd;
+}
+
+        .barra-fixa {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #80b1fd;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 0 0 20px 20px;
+            z-index: 100;  
+      
+   }
+        .produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
+            margin-top: 80px;
+            padding: 20px;
+        }
+        .produto {
+            border-radius: 15px;
+            background: #ffe9fbf1;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .produto img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        button {
+            background: #80b1fd;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #f49bb7;
+        }
+        .botao-flutuante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #80b2fdf5;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;  
+
+        }
+        .carrinho {
+    position: fixed;
+    top: 0;
+    right: -370px;
+    width: 250px;
+    height: 100%;
+    background: #fff6f9;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    padding: 20px;
+    transition: right 0.3s;
+    overflow-y: auto;
+    border-radius: 20px 0 0 20px;
+    z-index: 100;  
+}
+        .carrinho.ativo {
+            right: 0;
+        }
+        @media (max-width: 768px) {
+            .produtos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 769px) {
+            .produtos {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .banner-container {
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            border: 5px solid #80b1fd;
+            border-radius: 10px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .barra-pesquisa {
+            margin-top: 20px;
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 5px;
+            border: 2px solid #80b1fd;
+            font-size: 16px;
+        }
+
+
+        
+        footer {
+    background-color: #80b2fdd3;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    width: 100%;
+    margin-top: 40px;  
+}
+
+
+    .gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 20px;  
+    row-gap: 70px;  
+    margin-top: 2em;
+    z-index: 1;  
+}
+
+    .card {
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.999s;
+    }
+
+    .card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+
+    .card-front {
+        background-color: #f49bb7;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 24px;
+        transform: rotateY(0deg);
+        overflow: hidden;
+        box-shadow: 0 0 20px 5px rgba(255, 105, 180, 0.8);
+        animation: neonGlow 1.5s infinite alternate;
+    }
+
+    .card-back {
+        background-color: #80b1fd;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 24px;
+        transform: rotateY(180deg);
+        overflow: hidden;
+        box-shadow: 0 0 20px 5px rgba(255, 105, 180, 0.8);
+        animation: neonGlow 1.5s infinite alternate;
+    }
+
+    .card-front img,
+    .card-back img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 5px rgba(255, 105, 180, 0.8);
+        animation: neonGlow 1.5s infinite alternate;
+    }
+
+    .banner {
+    text-align: center;
+    background-color: #80b1fd;
+    padding: 5px 20px;
+    font-size: 1.5rem;
+    color: #ffe9fb;
+    border: 3px solid #f49bb7;  
+    border-radius: 8px;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+}
+.logo {
+    border-radius: 50%;
+    width: 60px;  
+    height: 60px;
+    object-fit: cover;  
+}
+ 
+.logo-container {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.store-name {
+    font-family: 'Comic Sans MS', cursive;
+     font-size: 22px;
+    color: #ff4081;
+}
+
+
+.barra-fixa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #80b1fd; 
+    padding: 10px 20px;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;  
+}
+
+.logo {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 10px;  
+}
+
+.btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn img {
+    width: 50px;
+    height: 50px;
+    border-radius: 200%;
+}
+
+.whatsapp {
+    background-color: #6c977c00;  
+}
+
+.instagram {
+    background-color: #e1306b00;  
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+
+    <div class="barra-fixa">
+        <div class="logo-container">
+            <img src="https://i.imgur.com/seOegmf.jpeg" alt="Logo" class="logo">
+            Navia Themes
+        </div>
+        <div class="contact-buttons">
+            <a href="https://wa.me/seu_numero" target="_blank" class="btn whatsapp">
+                <img src="https://i.imgur.com/NFFTfxH.jpeg" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/navia.themes" target="_blank" class="btn instagram">
+                <img src="https://i.imgur.com/vgKDh2O.jpeg" alt="Instagram">
+            </a>
+        </div>
+    </div>
+    
+    
+
+    <div class="banner-container">
+        <img src="https://i.imgur.com/seOegmf.jpeg" alt="Banner" class="banner-img">
+    </div>
+
+ 
+
+  
+ 
+    <button class="botao-flutuante" onclick="abrirCarrinho()">🛒</button>
+    
+    <div class="carrinho" id="carrinho">
+        <h2>Carrinho</h2>
+        <ul id="lista-carrinho"></ul>
+        <p>Total: R$ <span id="total-carrinho">0,00</span></p>
+        <button onclick="limparCarrinho()">Esvaziar Carrinho</button>
+        <button onclick="copiarNotaFiscal()">Finalizar via Instagram</button>
+        <button onclick="finalizarWhatsApp()">Finalizar via WhatsApp</button>
+        <button onclick="fecharCarrinho()">Fechar</button>
+    </div>
+    
+
+    <section id="gallery">
+        <section id="home" class="banner">
+            <h2>artes ! </h2>
+        </section>
+    
+        <div class="gallery">
+          <!-- Card 1 -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.imgur.com/PON5dgG.jpeg" alt="Photo 1">
+              </div>
+              <div class="card-back">
+                <img src="https://i.imgur.com/bLg3HLq.png" alt="Photo 1">
+              </div>
+            </div>
+            <!-- Botão Adicionar ao Carrinho -->
+            <button onclick="adicionarAoCarrinho('theme Simples', 3, '')" class="add-to-cart-button">Adicionar ao Carrinho</button>
+          </div>
+         
+      
+          <!-- Card 2 -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.imgur.com/UsYT5sg.jpeg" alt="Photo 2">
+              </div>
+              <div class="card-back">
+                <img src="https://i.imgur.com/7MfILfY.png" alt="Photo 2">
+              </div>
+            </div>
+            <!-- Botão Adicionar ao Carrinho -->
+            <button onclick="adicionarAoCarrinho('Produto 2', 60, ' ')" class="add-to-cart-button">Adicionar ao Carrinho</button>
+          </div>
+ 
+      
+          <!-- Card 3 -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.imgur.com/JdYRpsP.jpeg" alt="Photo 3">
+              </div>
+              <div class="card-back">
+                <img src="https://i.imgur.com/n54lpHc.png" alt="Photo 3">
+              </div>
+            </div>
+            <!-- Botão Adicionar ao Carrinho -->
+            <button onclick="adicionarAoCarrinho('Produto 2', 60, ' ')" class="add-to-cart-button">Adicionar ao Carrinho</button>
+          </div>
+      
+
+           <!-- Card 3 -->
+           <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.imgur.com/bnf7JBY.jpeg" alt="Photo 3">
+              </div>
+              <div class="card-back">
+                <img src="https://i.imgur.com/xpLi2bb.jpeg" alt="Photo 3">
+              </div>
+            </div>
+            <!-- Botão Adicionar ao Carrinho -->
+            <button onclick="adicionarAoCarrinho('Produto 2', 60, ' ')" class="add-to-cart-button">Adicionar ao Carrinho</button>
+          </div>
+
+            <!-- Card 3 -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.imgur.com/4EeIjZl.jpeg" alt="Photo 3">
+              </div>
+              <div class="card-back">
+                <img src="https://i.imgur.com/4EeIjZl.jpeg" alt="Photo 3">
+              </div>
+            </div>
+            <!-- Botão Adicionar ao Carrinho -->
+            <button onclick="adicionarAoCarrinho('outros', 60, ' ')" class="add-to-cart-button">Adicionar ao Carrinho</button>
+          </div>
+
+
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.imgur.com/kmVy5Dp.jpeg" alt="Photo 4">
+              </div>
+              <div class="card-back">
+                <img src="https://i.imgur.com/kmVy5Dp.jpeg" alt="Photo 4">
+              </div>
+            </div>
+            <button onclick="adicionarAoCarrinho('GFX', 60, ' ')" class="add-to-cart-button">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+ 
+ <!-- DICA PRA VC AMG: pra colocar gif no lugar da imagem  <img src="https://imgur.com/nNpDGtA.gif" alt="Back GIF 4"> -->
+
+      </section>
+ 
+      <footer>
+        <p>&copy; 2024 MndFranklin</p>
+         <!-- NÂO remova minha marca d'agua -->
+
+      </footer>
+ 
+    <script>
+    let totalCarrinho = 0;
+
+function abrirCarrinho() {
+    document.getElementById('carrinho').classList.add('ativo');
+}
+
+function fecharCarrinho() {
+    document.getElementById('carrinho').classList.remove('ativo');
+}
+
+function adicionarAoCarrinho(nome, preco, imagem) {
+    let lista = document.getElementById('lista-carrinho');
+    let item = document.createElement('li');
+    item.innerHTML = `
+        <img src="${imagem}" width="50"> ${nome} - R$ ${preco.toFixed(2)} 
+        <button onclick="removerDoCarrinho(this, ${preco})">Remover</button>`;
+    lista.appendChild(item);
+
+    totalCarrinho += preco;
+    atualizarTotal();
+}
+
+function removerDoCarrinho(botao, preco) {
+    botao.parentElement.remove();
+    totalCarrinho -= preco;
+    atualizarTotal();
+}
+
+function atualizarTotal() {
+    document.getElementById("total-carrinho").innerText = totalCarrinho.toFixed(2);
+}
+
+function limparCarrinho() {
+    document.getElementById('lista-carrinho').innerHTML = "";
+    totalCarrinho = 0;
+    atualizarTotal();
+}
+
+function copiarNotaFiscal() {
+    let lista = document.getElementById('lista-carrinho');
+    let listaSemBotoes = lista.cloneNode(true);
+    let botoesRemover = listaSemBotoes.querySelectorAll('button');
+    botoesRemover.forEach(botao => botao.remove());
+
+    navigator.clipboard.writeText(listaSemBotoes.innerText);
+    alert('Nota fiscal copiada!');
+    window.location.href = ' ';
+}
+
+function finalizarWhatsApp() {
+    let lista = document.getElementById('lista-carrinho');
+    let listaSemBotoes = lista.cloneNode(true);
+    let botoesRemover = listaSemBotoes.querySelectorAll('button');
+    botoesRemover.forEach(botao => botao.remove());
+
+    let mensagem = encodeURIComponent("Olá, esse é meu pedido, vou aguardar pelo atendimento:\n" + listaSemBotoes.innerText);
+    window.location.href = ` ?text=${mensagem}`;
+}
+    </script>
+</body>
+</html>
